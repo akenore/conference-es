@@ -21,6 +21,10 @@
     <link href="./assets/css/header.css" rel="stylesheet">
     <link href="./assets/css/responsive.css" rel="stylesheet">
 
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css' rel='stylesheet' />
+
+
 
 </head>
 
@@ -468,7 +472,8 @@
 
 
         <section class="home-map">
-            <div id="home-map" class="map"></div>
+            <div id='map' class="map"></div>
+            <!-- <div id="home-map" class="map"></div> -->
         </section>
 
 
@@ -515,13 +520,29 @@
     <script src="./assets/js/jquery.easing.min.js"></script>
     <script src="./assets/js/parallax.js"></script>
     <script src="./assets/js/theia-sticky-sidebar.js"></script>
+    
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWVkb25lIiwiYSI6ImNrMnEwZjJkdTA5OXozbm80ZHAwMThlcnMifQ.mjU4oz__hZLj6mkJGrRHSA';
+        const map = new mapboxgl.Map({
+            container: 'map', 
+            style: 'mapbox://styles/mapbox/streets-v11', 
+            center: [-5.6669251, 40.9613376], 
+            zoom: 9, 
+            projection: 'globe' 
+        });
+        const marker = new mapboxgl.Marker({color: 'orange'}).setLngLat([-5.6669251, 40.9613376]).addTo(map);
+        map.on('style.load', () => {
+            map.setFog({}); 
+        });
+        map.scrollZoom.disable();
+    </script>
 
-    <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQlXnmyNPAeN3c3HNyWoUMqDk6bDF31Cg"></script>
+    <!-- <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQlXnmyNPAeN3c3HNyWoUMqDk6bDF31Cg"></script> -->
 
     <script src="./assets/js/custom.js"></script>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         //Home Page map
         var styleArray = [{
             "featureType": "water",
@@ -578,7 +599,7 @@
             icon: './images/map-icon.png'
         });
 
-    </script>
+    </script> -->
 </body>
 
 </html>
